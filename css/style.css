@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    text-align: center;
+    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+}
+
+main{
+    display: inline-block;
+    margin-top: 2%;
+    padding: 15px;
+    position: relative;
+}
+.pokedex{
+    width: 100%;
+    height: 100%;
+    max-width: 425px;
+}
+
+.pokemon{
+    position: absolute;
+    bottom: 50%;
+    left: 52%;
+    transform: translate(-63%, -20%);
+    height: 15%;
+}
+.pokemonH1{
+    position: absolute;
+    font-weight: 600;
+    top: 54.5%;
+    right: 27%;
+    font-size: clamp(8px, 4vw, 25px);
+}
+.name{
+    text-transform: capitalize;
+    color: #111111;
+}
+.number{
+    color: #696969;
+}
+.form{
+    position: absolute;
+    width: 65%;
+    top: 65%;
+    left: 13.3%;
+}
+.search{
+    width: 100%;
+    padding: 3%;
+    outline: none;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    font-weight: 600;
+    color: #313131;
+    font-size: clamp(8px, 4vw, 1rem);
+    box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
+}
+.buttons{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 65%;
+    display: flex;
+    transform: translate(-57%, 0%);
+    gap: 20px;
+}
+.btn{
+    width: 50%;
+    padding: 4%;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    font-size: clamp(8px, 4vw, 1rem);
+    font: weight 600;
+    color: white;
+    background: #444;
+    box-shadow: -2px 3px 0 #222, -5px 7px 0 #000;
+}
+.btn:active{
+    box-shadow: inset -4px 4px 0 #222;
+    font-size: 0.9rem;
+}
+
