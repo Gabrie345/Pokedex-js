@@ -5,7 +5,22 @@ const btnPrev= document.querySelector('.btn-prev');
 const btnNext = document.querySelector('.btn-next');
 const form = document.querySelector('form');
 const input = document.querySelector('input');
+const btn1 = document.querySelector('.btn1');
+const btn2 = document.querySelector('.btn2');
+const divAuxilo = document.querySelector('.divAuxilo');
+
 let pokemonInTela = 0;
+let pokemon01recomendacao = "";
+let pokemon02recomendacao = "";
+listaPokemon = [];
+
+const listarPokemon = async () => {
+    const APIresponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=649`)
+    const data = await APIresponse.json();
+    for(let i = 0; i < data.results.length; i++){
+        listaPokemon.push(data.results[i].name);
+    }
+}
 
 const fetchPokemon = async (pokemon) => {
     if (!isNaN(pokemon)) {
@@ -15,7 +30,6 @@ const fetchPokemon = async (pokemon) => {
     const APIresponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
     if(APIresponse.ok){
         const data = await APIresponse.json();
-        console.log(data);
         return data;
     } else {
         pokemonName.innerHTML = "not found";
@@ -35,8 +49,8 @@ const renderPokemon = async (pokemon) => {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(input.value);
     renderPokemon(input.value.toLowerCase());
+    divAuxilo.style.display = "none";
 })
 
 btnPrev.addEventListener('click', () => {
@@ -48,6 +62,7 @@ btnPrev.addEventListener('click', () => {
     btnPrev.disabled = false;
     renderPokemon(pokemonInTela-1);
     input.value = "";
+    divAuxilo.style.display = "none";
 })
 
 btnNext.addEventListener('click', () => {
@@ -59,6 +74,36 @@ btnNext.addEventListener('click', () => {
     btnPrev.disabled = false;
     renderPokemon(pokemonInTela+1);
     input.value = "";
+    divAuxilo.style.display = "none";
+});
+
+input.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') return;
+    let dadosFiltrados = listaPokemon.filter(elemento => elemento.includes(input.value));
+    if(dadosFiltrados.length == 0){
+        divAuxilo.style.display = "none";
+    }else{
+        divAuxilo.style.display = "block";
+        btn2.style.display = "block";
+        btn1.innerHTML = dadosFiltrados[0];
+        btn2.innerHTML = dadosFiltrados[1];
+        pokemon01recomendacao = dadosFiltrados[0];
+        pokemon02recomendacao = dadosFiltrados[1];
+        if(dadosFiltrados.length == 1){
+            btn2.style.display = "none";
+        }
+    }
+});
+
+btn1.addEventListener('click', () => {
+    renderPokemon(pokemon01recomendacao);
+    divAuxilo.style.display = "none";
+});
+
+btn2.addEventListener('click', () => {
+    renderPokemon(pokemon02recomendacao);
+    divAuxilo.style.display = "none";
 });
 
 renderPokemon(Math.floor(Math.random()*649)+1);
+listarPokemon();

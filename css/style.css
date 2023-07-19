@@ -61,7 +61,7 @@ main{
 }
 .buttons{
     position: absolute;
-    bottom: 10%;
+    bottom: 8%;
     left: 50%;
     width: 65%;
     display: flex;
@@ -82,5 +82,35 @@ main{
 .btn:active{
     box-shadow: inset -4px 4px 0 #222;
     font-size: 0.9rem;
+}
+
+.buttonsAuxilioPesquisa{
+    position: absolute;
+    top: 77%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(8px, 4vw, 1rem);
+    color: #fdfdfd;
+}
+.btnA {
+    display: inline-block;
+    padding: 1% 2%;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    font-size: clamp(8px, 3vw, 0.7rem);
+    font-weight: 600;
+    color: white;
+    background: #444;
+    box-shadow: -1px 2px 0 #222, -4px 6px 0 #000;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 8px;
+}
+.btnA:active {
+    box-shadow: inset -4px 4px 0 #222;
+    font-size: 0.6rem;
+}
+.divAuxilo{
+    display: none;
 }
 
